@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* vh 就是视口，相对于浏览器的窗口大小，可视区的高度就是 100vh */
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 90vw;
+}
+
+.panel {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #fff;
+    flex: 1;
+    margin: 10px;
+    position: relative;
+    transition: all 0.7S ease-in 0s;
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    opacity: 0;
+}
+
+.panel.active {
+    flex: 8;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    /* 动画效果：属性是 opacity 透明度，动画效果是总共 0.3s，esae-in 是动画方式，缓入的效果，0.4s 是延迟时间 */
+    transition: opacity 0.3s ease-in 0.4s;
+}
+
+/* 做一个响应式布局 */
+/* 宽度小于480时，container 的宽度改为100，第4个和第5个 panel 不显示 */
+@media (max-width:480px) {
+    .container {
+        width: 100vw;
+    }
+
+    .panel:nth-of-type(4),
+    .panel:nth-of-type(5) {
+        display: none;
+    }
+}
