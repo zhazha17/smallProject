@@ -1,0 +1,101 @@
+:root {
+    /* 给相同的颜色属性起一个属性名字 */
+    --line-border-fill: #3468db;
+    --lin-border-empty: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    border-color: #f6f7f6;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    width: 400px;
+    position: relative;
+}
+
+/* 定义步骤之间的线（灰色） */
+.progress-container::before {
+    content: "";
+    /* 利用 var 函数，调用之前定义好的颜色 */
+    background-color: var(--lin-border-empty);
+    height: 4px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.progress {
+    /* 定义步骤之间的线（蓝色） */
+    background-color: var(--line-border-fill);
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    width: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: width 0.3s ease;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #fff;
+    color: #999;
+    border: 3px solid var(--lin-border-empty);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border-color 0.3s ease;
+}
+
+.circle.active {
+    border-color: var(--line-border-fill);
+}
+
+.btn {
+    background-color: var(--line-border-fill);
+    color: #fff;
+    border-radius: 5px;
+    border: 0;
+    padding: 8px 30px;
+    margin-right: 15px;
+}
+
+/* 为点击按钮时添加动画 */
+.btn:active {
+    /* 按钮被点击时缩小为原来的0.98 */
+    transform: scale(0.98);
+}
+
+/* 点击按钮时会有一个默认的边框，焦点离开时边框消失 */
+.btn:focus {
+    outline: 0;
+}
+
+.btn:disabled {
+    background-color: var(--lin-border-empty);
+    cursor: not-allowed;
+}
